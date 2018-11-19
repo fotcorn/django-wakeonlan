@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Wake on Lan</title>
+  </head>
+  <body>
+    <form action="{% url 'wol' %}" method="post">
+      <div>
+        <label for="{{ form.target.id_for_label }}">Target</label> {{ form.target }}
+      </div>
+      <input type="submit" value="Wake on land">
+    </form>
+  </body>
+</html>
