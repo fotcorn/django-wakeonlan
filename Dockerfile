@@ -1,11 +1,16 @@
 
 FROM python:3.7-slim AS builder
 
+
+RUN set -ex \
+    && apt-get update \
+    && apt-get install build-essential --no-install-recommends -y \
+    && pip install pipenv
+
 ADD ./Pipfile /Pipfile
 ADD ./Pipfile.lock /Pipfile.lock
 
 RUN set -ex \
-    && pip install pipenv \
     && pipenv install --system --deploy \
     && pip install uwsgi==2.0.17
 

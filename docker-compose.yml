@@ -10,7 +10,7 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
 
   django:
-    image: fotcorn/liveinconcert-backend
+    build: .
     environment:
       - "DATABASE_URL=postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres"
       - "SECRET_KEY=${SECRET_KEY}"
