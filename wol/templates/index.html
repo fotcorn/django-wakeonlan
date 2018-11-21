@@ -5,7 +5,11 @@
     <title>Wake on Lan</title>
   </head>
   <body>
+    {% if 'success' in request.GET %}
+    Successfully sent magic packet
+    {% endif %}
     <form action="{% url 'wol' %}" method="post">
+      {% csrf_token %}
       <div>
         <label for="{{ form.target.id_for_label }}">Target</label> {{ form.target }}
       </div>
