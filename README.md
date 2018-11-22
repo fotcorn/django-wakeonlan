@@ -29,13 +29,5 @@ Create a user: `docker exec -it wakeonlan /code/manage.py createsuperuser`
 * Install dependencies: `pipenv install`
 * Run the server: `./manage.py runserver`
 
-### Raspberry Pi / other Single board computers
-By replacing the base image in the Dockerfile (`FROM python:3.7-alpine`) and building it on the device, this program can be run on any anything
-which has docker and supported base images.
-
-* Use `arm32v6/python:3.7-alpine` for Raspberry Pi 1
-* Use `arm32v6/python:3.7-alpine` for 32 bit Raspberry Pi 2/3
-* Use `arm64v8/python:3.7-alpine` for 64 bit Raspberry Pi 2/3
-
 ### License
 Licensed under the MIT license.
