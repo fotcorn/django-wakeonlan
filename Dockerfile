@@ -1,8 +1,7 @@
-FROM python:3.7-slim AS builder
+FROM python:3.7-alpine AS builder
 
 RUN set -ex \
-    && apt-get update \
-    && apt-get install build-essential --no-install-recommends -y \
+    && apk add --no-cache build-base linux-headers \
     && pip install pipenv
 
 ADD ./Pipfile /Pipfile
@@ -13,7 +12,7 @@ RUN set -ex \
     && pip install uwsgi==2.0.17
 
 # create new container without build dependencies
-FROM python:3.7-slim
+FROM python:3.7-alpine
 
 # copy site-packages with compiled binaries from builder container
 COPY --from=builder /usr/local/lib/python3.7/site-packages /usr/local/lib/python3.7/site-packages
