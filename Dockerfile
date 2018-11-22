@@ -1,6 +1,4 @@
-
 FROM python:3.7-slim AS builder
-
 
 RUN set -ex \
     && apt-get update \
@@ -27,7 +25,7 @@ ADD ./manage.py /code/manage.py
 ADD ./wol/ /code/wol
 
 ENV DEBUG False
-ENV UWSGI_WSGI_FILE=/code/wol/wsgi.py UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_WORKERS=2 UWSGI_THREADS=8 UWSGI_UID=1000 UWSGI_GID=2000 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
+ENV UWSGI_WSGI_FILE=/code/wol/wsgi.py UWSGI_HTTP=:8000 UWSGI_MASTER=1 UWSGI_WORKERS=2 UWSGI_THREADS=8 UWSGI_LAZY_APPS=1 UWSGI_WSGI_ENV_BEHAVIOR=holy
 
 WORKDIR /code
 RUN SECRET_KEY=none python manage.py collectstatic --noinput

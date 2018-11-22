@@ -1,19 +1,27 @@
 ### Introduction
 This is a very simple Django web app to send Wake on Land magic packets to a computer to start it.
-
+* Target computer can be managed by the simple django admin interface
+* Page is password protected, users can be added on the django admin interface
 
 ### Production Setup
-The easiest way to run this is with docker and docker-compose.
+The easiest way to run this is with docker:
+```
+# build the container
+docker built -t wakeonland .
 
-Set the following environment variables:
-* DOMAIN: How the app will be accessed, e.g. "localhost", wakeonlan.mydomain.com or an ip address
-* SECRET_KEY: A randomly generated key used by django the e.g. encrypt session cookies
-* POSTGRES_PASSWORD: A password to authenticate on the postgres server
+# setup container and run it
+docker run --name wakeonlan -d \
+    -v wakeonlan_data:/data \
+    -p 8000:8000 \
+    -e ALLOWED_HOSTS=localhost \
+    -e SECRET_KEY=a-secret-key \
+    -e DATABASE_URL=sqlite:////data/db.sqlite3 \
+    wakeonlan
+```
+Change the ALLOWED_HOSTS variable to how the app will be accessed, e.g. "localhost", wakeonlan.mydomain.com or an ip address.
 
-And the run the following commands:
-* Run `docker-compose up -d` to start the app.
-* Run `docker-compose exec django /code/manage.py migrate` to generate the database fields
-* Run `docker-compose exec django /code/manage.py createsuperuser` to create a user
+Update the database: `docker exec -it wakeonlan /code/manage.py migrate`
+Create a user: `docker exec -it wakeonlan /code/manage.py createsuperuser`
 
 ### Local development
 * Copy the file `.env.dist` and name it `.env`.
