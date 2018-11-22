@@ -10,6 +10,7 @@ Set the following environment variables:
 * SECRET_KEY: A randomly generated key used by django the e.g. encrypt session cookies
 * POSTGRES_PASSWORD: A password to authenticate on the postgres server
 
+And the run the following commands:
 * Run `docker-compose up -d` to start the app.
 * Run `docker-compose exec django /code/manage.py migrate` to generate the database fields
 * Run `docker-compose exec django /code/manage.py createsuperuser` to create a user
