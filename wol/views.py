@@ -14,6 +14,5 @@ class WOLView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         target = form.cleaned_data['target']
-        wakeonlan.send_magic_packet(target.mac_address)
+        wakeonlan.send_magic_packet(target.mac_address, ip_address=target)
         return HttpResponseRedirect(reverse('wol') + '?success')
-
