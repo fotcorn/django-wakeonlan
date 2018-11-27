@@ -23,6 +23,15 @@ Change the ALLOWED_HOSTS variable to how the app will be accessed, e.g. "localho
 Update the database: `docker exec -it wakeonlan /code/manage.py migrate`
 Create a user: `docker exec -it wakeonlan /code/manage.py createsuperuser`
 
+You can also use docker compose:
+```
+export DOMAIN your-domain-or-ip
+export SECRET_KEY some_random_key
+docker-compose up -d
+docker-compose exec django /code/manage.py migrate
+docker-compose exec django /code/manage.py createsuperuser
+```
+
 ### Local development
 * Copy the file `.env.dist` and name it `.env`.
 * Install pipenv (e.g. `pip install pipenv`)
