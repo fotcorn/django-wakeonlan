@@ -16,6 +16,7 @@ docker run --name wakeonlan -d \
     -e ALLOWED_HOSTS=localhost \
     -e SECRET_KEY=a-secret-key \
     -e DATABASE_URL=sqlite:////data/db.sqlite3 \
+    --net=host \
     wakeonlan
 ```
 Change the ALLOWED_HOSTS variable to how the app will be accessed, e.g. "localhost", wakeonlan.mydomain.com or an ip address.

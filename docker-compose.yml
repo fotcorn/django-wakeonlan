@@ -2,6 +2,7 @@ version: '2.1'
 
 services:
   django:
+    network_mode: "host"
     build: .
     environment:
       - "DATABASE_URL=sqlite:////data/db.sqlite3"
